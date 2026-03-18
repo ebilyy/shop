@@ -1,8 +1,8 @@
 package user
 
 import (
-	// "fmt"
-	// "net/http"
+	"fmt"
+	"net/http"
 	// "encoding/json"
 	"gorm.io/gorm"
 )
@@ -34,6 +34,16 @@ var Users = []User{
 	{ID: 2, Name: "Jane Doe", Email: "jane.doe@example.com"},
 }
 type Handler struct { DB *gorm.DB }
+
+func CreateUser(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodPost {
+		http.Error(w, "method not allowed", http.StatusMethodNotAllowed)
+		return
+	}
+	user := r.Body
+	fmt.Println(user)
+	return
+}
 
 // func HandleUsersGet(w http.ResponseWriter, r *http.Request) {
 // 	if r.Method != http.MethodGet {
