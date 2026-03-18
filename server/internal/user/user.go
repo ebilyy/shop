@@ -1,6 +1,11 @@
 package user
 
-import "gorm.io/gorm"
+import (
+	// "fmt"
+	// "net/http"
+	// "encoding/json"
+	"gorm.io/gorm"
+)
 
 type User struct {
 	gorm.Model
@@ -23,8 +28,28 @@ type User struct {
 	Avatar string  `json:"avatar"`
 }
 
-// тимчасово зберігаємо товари в пам'яті
+// // тимчасово зберігаємо товари в пам'яті
 var Users = []User{
 	{ID: 1, Name: "John Doe", Email: "john.doe@example.com"},
 	{ID: 2, Name: "Jane Doe", Email: "jane.doe@example.com"},
 }
+type Handler struct { DB *gorm.DB }
+
+// func HandleUsersGet(w http.ResponseWriter, r *http.Request) {
+// 	if r.Method != http.MethodGet {
+// 			http.Error(w, "method not allowed", http.StatusMethodNotAllowed)
+// 			return
+// 	}
+
+// 	w.Header().Set("Content-Type", "application/json")
+// 	users := h.DB.Find(&User{})
+// 	fmt.Println(users)
+// 	if err := json.NewEncoder(w).Encode(Users); err != nil {
+// 			http.Error(w, err.Error(), http.StatusInternalServerError)
+// 			return
+// 	}
+// 	// if err := json.NewEncoder(w).Encode(app.db.Find(&User{})); err != nil {
+// 	// 		http.Error(w, err.Error(), http.StatusInternalServerError)
+// 	// 		return
+// 	// }
+// }
